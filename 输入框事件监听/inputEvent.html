@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>输入框事件监听</title>
+    <style type="text/css">
+        table td {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div style="padding:20px;">
+            <input type="text" id="usertext" />
+        </div>
+
+        <table id="recordTable" border="1" cellspacing="0"> 
+            <!-- 表头 -->
+            <thead>
+                <tr>
+                    <td>(index)</td>
+                    <td>event</td>
+                    <td>value</td>  
+                    <td>keyCode</td>
+                </tr>
+            </thead>
+            <!-- 表格内容 -->
+            <tbody>
+                <!-- 由js动态添加内容 -->
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <script src="../common/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var table = document.getElementById('recordTable');
+            var $text = $('#usertext');
+            var arr = [];
+
+            // input框中文输入事件监听(必须使用原生)
+            var cpLock = true;
+            var inputText = document.getElementById('usertext');
+            inputText.addEventListener('compositionstart', function(event) {
+                cpLock = false;
+                console.log('start:' + event.data)
+            })
+
+            inputText.addEventListener('compositionend', function(event) {
+                cpLock = true;
+                console.log('end:' + this.value)
+            })
+
+            inputText.addEventListener('input', function(event) {
+                if(cpLock) {
+                    console.log('input event:' + this.value)
+                }
+                
+            })
+
+            // $text.on('input', function(event) {
+            //     arr.push(
+            //        'input',
+            //         $(this).val(),
+            //        event.keyCode
+            //     )
+
+            //     console.log(arr)
+            //     insertTr(table, arr, 1)
+            // })
+            
+            // $text.on('keyup', function(event) {
+            //     arr.push(
+            //        'keyup',
+            //         $(this).val(),
+            //        event.keyCode
+            //     )
+
+            //     // console.log(arr)
+            //     // insertTr(table, arr, 2)
+            // })
+
+            // $text.on('change', function(event) {
+            //     arr.push(
+            //        'change',
+            //         $(this).val(),
+            //        event.keyCode
+            //     )
+
+            //     // console.log(arr)
+            //     // insertTr(table, arr, 3)
+            // })
+
+            // $text.on('input propertychange', function(event) {
+            //     arr.push(
+            //        'input propertychange',
+            //         $(this).val(),
+            //        event.keyCode
+            //     )
+
+            //     // console.log(arr)
+            //     // insertTr(table, arr, 4)
+            // })
+           
+            function insertTr(table, arr, index) {
+                var newTr = table.insertRow();
+                var td1 = newTr.insertCell(-1);
+                td1.innerHTML = index;
+                var td2 = newTr.insertCell(-1);
+                td2.innerHTML = arr[0];
+                var td3 = newTr.insertCell(-1);
+                td3.innerHTML = arr[1];
+                var td4 = newTr.insertCell(-1);
+                td4.innerHTML = arr[2];
+            }
+
+        })
+    </script>
+</body>
+</html>
