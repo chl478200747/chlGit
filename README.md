@@ -1,8 +1,30 @@
-# chlgit
-for chl gitFac maybe all ...
+# vplayer
 
-这个包含了一些日常测试代码。
-也又能有一些临时想起来写的代码示例。
-或者有时候看到某些觉得有趣的博客的时候，跟着动手写了一些。。。
+> A Vue.js project
 
-总之，大部分应该都是一些整理的笔记类的东西。
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+
+# run unit tests
+npm run unit
+
+# run e2e tests
+npm run e2e
+
+# run all tests
+npm test
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
